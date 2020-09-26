@@ -1,6 +1,8 @@
 resource "aws_security_group" "main" {
   vpc_id = module.vpc.vpc_id
 
+  tags = var.tags
+
   ingress {
     protocol  = "tcp"
     from_port = 80
@@ -27,6 +29,8 @@ resource "aws_security_group" "main" {
 }
 
 resource "aws_iam_role" "main" {
+  tags = var.tags
+
   assume_role_policy = jsonencode(
     {
       Version : "2012-10-17",
